@@ -4,7 +4,7 @@ import speedtest
 st = speedtest.Speedtest(secure=True)
 
 #Get the best test server and set it
-def server():
+def best_server():
     best = st.get_best_server()
     return best
 
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     print('-----' * 14, '\n')
 
     print('Scanning for best server...')
-    print(f"Found:{server()['host']} located in {server()['country']}")
+    print(f"Found:{best_server()['host']} located in {best_server()['country']}")
 
     print('\n','-' * 10, 'Starting Speedtest','-' * 10)
     print(f'\u001b[48;5;35m\u001b[38;5;255mPing: {ping():.2f} ms')
