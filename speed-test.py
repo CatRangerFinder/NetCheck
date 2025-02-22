@@ -1,7 +1,7 @@
 import speedtest
 
 
-st = speedtest.Speedtest()
+st = speedtest.Speedtest(secure=True)
 
 #Get the best test server and set it
 def server():
@@ -34,10 +34,11 @@ if __name__ == '__main__':
     print('Scanning for best server...')
     print(f"Found:{server()['host']} located in {server()['country']}")
 
-    print('\nStarting Speedtest...')
-    print(f'\u001b[48;5;35m\u001b[38;5;255mPing: {ping()} ms\u001b[0m')
-    print(f'\u001b[48;5;32m\u001b[38;5;255mDownload Speeds: {download_test():.2f} Mb/s\u001b[0m')
-    print(f'\u001b[48;5;93m\u001b[38;5;255mUpload Speeds: {upload_test():.2f} Mb/s\u001b[0m')
+    print('\n','-' * 10, 'Starting Speedtest','-' * 10)
+    print(f'\u001b[48;5;35m\u001b[38;5;255mPing: {ping():.2f} ms')
+    print(f'\u001b[48;5;32m\u001b[38;5;255mDownload Speeds: {download_test():.2f} Mb/s')
+    print(f'\u001b[48;5;93m\u001b[38;5;255mUpload Speeds: {upload_test():.2f} Mb/s')
+    print('\u001b[0m')
 
-    print('\nSpeed test done.')
+    print(f'Speed test finished.')
     input('Press Enter to exit:')
