@@ -1,7 +1,6 @@
 import speedtest
 
-
-st = speedtest.Speedtest(secure=True)
+st = speedtest.Speedtest()
 
 #Get the best test server and set it
 def best_server():
