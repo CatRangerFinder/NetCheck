@@ -3,11 +3,13 @@ from prometheus_client import Counter, Gauge, generate_latest
 import speed_test
 import time
 
+##System config##
+server_name = str('server-TEST')
+
 
 app = Flask(__name__)
 download_speed = speed_test.download_test()
 upload_speed = speed_test.upload_test()
-
 
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
 
@@ -35,16 +37,16 @@ def metrics_page():
     #Network data for prometheus
     start_speed_time = time.time()
     speed_test.best_server()
-    current_download_rate_locally.labels('server-a').set(round(download_speed, 3))
+    current_download_rate_locally.labels(server_name).set(round(download_speed, 3))
     print(f'METRICS_LOG: download_speed= {download_speed} Mb/s')
-    current_upload_rate_locally.labels('server-a').set(round(upload_speed, 3))
+    current_upload_rate_locally.labels(server_name).set(round(upload_speed, 3))
     print(f'METRICS_LOG: upload_speed= {upload_speed} Mb/s')
     end_speed_time = time.time()
 
 
     #Logs section uncomment out this section and all "start_*_time" parts to enable logs in the console
     time_spent_speed = (end_speed_time - start_speed_time)
-    print(f'TIME_LOG: Time to process speed.tes: {time_spent_speed:.3f} seconds')
+    print(f'TIME_LOG: Time to process speedtest: {time_spent_speed:.3f} seconds')
 
     #Final time logger for the request
     end_pull_time = time.time()
