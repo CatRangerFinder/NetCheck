@@ -4,7 +4,7 @@ import speed_test
 import time
 
 ##System config##
-server_name = str('server-TEST')
+server_name = str('server-a')
 
 
 app = Flask(__name__)
