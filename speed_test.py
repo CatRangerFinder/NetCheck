@@ -1,30 +1,30 @@
 import speedtest
 
-st = speedtest.Speedtest()
+st = speedtest.Speedtest(secure=True)
 
-#Get the best test server and set it
+# Get the best test server and set it
 def best_server():
     best = st.get_best_server()
     return best
 
-#Ping Speedtest
+# Ping Speedtest
 def ping():
     ping_ms = st.results.ping
     return ping_ms
 
-#Download Speedtest
+# Download Speedtest
 def download_test():
     download_speed = st.download()
-    download_speed = download_speed / 1000000 #convert the bits into megabits
+    download_speed = download_speed / 1000000 #convert the bytes into megabyte
     return download_speed
 
-#Upload Speedtest
+# Upload Speedtest
 def upload_test():
     upload_speed = st.upload()
     upload_speed = upload_speed / 1000000 #convert the bits into megabits
     return upload_speed
 
-#Makes it so it can run separately
+# Makes it so it can run separately
 if __name__ == '__main__':
 
     print('Beginning Speedtest')
