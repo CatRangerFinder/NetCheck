@@ -1,18 +1,18 @@
-from flask import Flask, jsonify, request, Response
-from prometheus_client import Counter, Gauge, generate_latest
-import speed_test
 import time
+
+from flask import Flask, jsonify, Response
+from prometheus_client import Gauge, generate_latest
+
+import speed_test
 
 ##System config##
 server_name = str('server-a')
-
 
 app = Flask(__name__)
 download_speed = speed_test.download_test()
 upload_speed = speed_test.upload_test()
 
 CONTENT_TYPE_LATEST = str('text/plain; version=0.0.4; charset=utf-8')
-
 
 # Download speed metric label
 current_download_rate_locally = Gauge(
@@ -42,7 +42,6 @@ def metrics_page():
     current_upload_rate_locally.labels(server_name).set(round(upload_speed, 3))
     print(f'METRICS_LOG: upload_speed= {upload_speed} Mb/s')
     end_speed_time = time.time()
-
 
     # Logs section uncomment out this section and all "start_*_time" parts to enable logs in the console
     time_spent_speed = (end_speed_time - start_speed_time)

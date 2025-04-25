@@ -1,13 +1,12 @@
-import dns.resolver
 import time
 
+import dns.resolver
 
 # Website lookup list (template: "<NAME>" (put a "," on the end of the previous entry))
 website_lookup = [
     "google.com",
     "github.com"
 ]
-
 
 # DNS server list (template: {"name": "<DISPLAY_NAME>", "address": "<IP_ADDRESS>"}
 # (put a "," on the end of the previous entry))
@@ -18,10 +17,11 @@ dns_servers = [
     {"name": "Aux Google", "address": "8.8.4.4"}
 ]
 
-
 resolver = dns.resolver.Resolver()
-#answers = resolver.resolve('google.com', 'A')
-#answers_TXT = resolver.resolve('google.com', 'TXT')
+
+
+# answers = resolver.resolve('google.com', 'A')
+# answers_TXT = resolver.resolve('google.com', 'TXT')
 
 def test_dns_speed(server_name, server_address=None):
     response_time = []
